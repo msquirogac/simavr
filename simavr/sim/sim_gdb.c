@@ -312,8 +312,11 @@ gdb_handle_command(
 				snprintf(rep, sizeof(rep),
 						"l<memory-map>\n"
 						" <memory type='ram' start='0x800000' length='%#x'/>\n"
-						" <memory type='flash' start='0' length='%#x'>\n"
-						"  <property name='blocksize'>0x80</property>\n"
+						" <memory type='ram' start='0' length='%#x'>\n"
+						//" <memory type='flash' start='0' length='%#x'>\n"
+						//"  <property name='blocksize'>0x80</property>\n"
+						// Temporal fix for #371 issue, revert once
+						// vFlash commands are properly implemented
 						" </memory>\n"
 						"</memory-map>",
 						g->avr->ramend + 1, g->avr->flashend + 1);
